@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: a643580-spring-app
+  namespace: fse1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: a643580-spring-app
+  template:
+    metadata:
+      labels:
+        app: a643580-spring-app
+    spec:
+      containers:
+      - name: a643580-spring-app
+        image: akashl21/small-change-spring-mybatis-fse1:1.2
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:oracle:thin:@orcl.cp8g424og328.ap-south-1.rds.amazonaws.com:1521/orcl"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "admin"
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "tiger123"
+      imagePullSecrets:
+      - name: my-registry-secret

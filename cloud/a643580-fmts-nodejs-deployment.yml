@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: a643580-fmts-nodejs
+  namespace: fse1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: a643580-fmts-nodejs
+  template:
+    metadata:
+      labels:
+        app: a643580-fmts-nodejs
+    spec:
+      containers:
+      - name: a643580-fmts-nodejs
+        image: akashl21/small-change-fmts-fse1:latest
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: my-registry-secret  

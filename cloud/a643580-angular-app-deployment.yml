@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: a643580-angular-app
+  namespace: fse1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: a643580-angular-app
+  template:
+    metadata:
+      labels:
+        app: a643580-angular-app
+    spec:
+      containers:
+      - name: a643580-angular-app
+        image: akashl21/small-change-angular-fse1:latest
+        ports:
+        - containerPort: 4200
+      imagePullSecrets:
+      - name: my-registry-secret
