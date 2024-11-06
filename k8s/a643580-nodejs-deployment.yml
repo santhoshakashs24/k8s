@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: a643580-nodejs
+  namespace: a643580-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: a643580-nodejs
+  template:
+    metadata:
+      labels:
+        app: a643580-nodejs
+    spec:
+      containers:
+      - name: a643580-fmts-nodejs
+        image: leap2024artifact.jfrog.io/docker-local/midtier-trade-marshals:latest
+        ports:
+        - containerPort: 4000
+      imagePullSecrets:
+      - name: srvleapdeploy-secret  
